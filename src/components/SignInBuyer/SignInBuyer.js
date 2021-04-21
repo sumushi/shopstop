@@ -36,7 +36,7 @@ const SignInBuyer = ({ onRouteChange }) => {
                             </div>
                             <div className="tc">
                                 <input type="submit" 
-                                onClick={() => onRouteChange('landinguser')} value="Sign In" className="ttu bn pv3 ph4 f6 bg-blue white b br-pill pointer grow" />
+                                onClick={() => onRouteChange('underconstruction')} value="Sign In" className="ttu bn pv3 ph4 f6 bg-blue white b br-pill pointer grow" />
                             </div>
                         </article>
                     </div>
