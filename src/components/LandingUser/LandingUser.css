@@ -1,0 +1,41 @@
+.background{
+    background-image: url(background.jpg);
+    height: 46rem;
+    padding-top: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.search-bar{
+    margin-right: 1rem;
+}
+
+hr{
+    width: 10%;
+}
+
+.order-image{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 7rem;
+}
+.recent-order{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.more-order{
+    font-weight: 400;
+    color: grey;
+}
+.row{
+    margin-top: 4rem;
+}
+
+button img{
+    width: 30px;
+}
+.profile-btn{
+    position: relative;
+    left: 45rem;
+    margin-bottom: 3rem;
+}

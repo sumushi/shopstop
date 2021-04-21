@@ -8,8 +8,8 @@ import SignInBuyer from './components/SignInBuyer/SignInBuyer'
 import SignInShopkeeper from './components/SignInShopkeeper/SignInShopkeeper'
 import RegisterBuyer from './components/RegisterBuyer/RegisterBuyer'
 import RegisterShopkeeper from './components/RegisterShopkeeper/RegisterShopkeeper'
-
-
+import LandingUser from './components/LandingUser/LandingUser';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const intialState={
   route:'usertype',
@@ -28,6 +28,8 @@ const intialState={
   }
 
 }
+
+
 class App extends Component {
   constructor() {
     super();
@@ -64,16 +66,17 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
-    
-    this.setState({route: route});
-    
+
+    this.setState({ route: route });
+
   }
 
-  
+
 
   render() {
-    const {route} = this.state;
+    const { route } = this.state;
     return (
+
      <div className='App'>
        
       <Navigation onRouteChange={this.onRouteChange} />
@@ -107,7 +110,10 @@ class App extends Component {
         )
       }
       
-      {/*
+     
+
+        {/*
+
       
       
       <RegisterBuyer />
@@ -116,7 +122,7 @@ class App extends Component {
       <RegisterShopkeeper />*/}
 
 
-     </div>
+      </div>
     );
   }
 }
