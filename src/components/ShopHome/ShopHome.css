@@ -1,0 +1,18 @@
+.shophome{
+    font-family: sans-serif;
+    
+}
+.shophome .background{
+    /*background-image: url(background.jpg);*/
+    height: 49rem;
+    padding-top: 1.5rem;
+    
+}
+.shophome button img{
+    width: 30px;
+}
+.shophome .profile-btn{
+    position: relative;
+    left: 45rem;
+    margin-bottom: 3rem;
+}

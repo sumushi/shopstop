@@ -8,7 +8,12 @@ import SignInBuyer from './components/SignInBuyer/SignInBuyer'
 import SignInShopkeeper from './components/SignInShopkeeper/SignInShopkeeper'
 import RegisterBuyer from './components/RegisterBuyer/RegisterBuyer'
 import RegisterShopkeeper from './components/RegisterShopkeeper/RegisterShopkeeper'
-
+import UserHome from './components/UserHome/UserHome';
+import UserOrders from './components/UserOrders/UserOrders';
+import EditUserDetails from './components/EditUserDetails/EditUserDetails'
+import EditShopDetails from './components/EditShopDetails/EditShopDetails'
+import ShopHome from './components/ShopHome/ShopHome'
+import ShopOrders from './components/ShopOrders/ShopOrders'
 const intialState={
   route:'usertype',
   isSignedin:'false',
@@ -43,8 +48,6 @@ class App extends Component {
     this.state = {intialState }
 
   }
-
-
 
   loadUser=(user)=>{
     // console.log(user)
@@ -82,7 +85,18 @@ class App extends Component {
     
   }
 
-  
+  // : (route === 'userhome' ?
+  // <UserHome onRouteChange={this.onRouteChange} />
+  // : (route === 'userorders' ?
+  //   <UserOrders onRouteChange={this.onRouteChange} />
+  //   : (route === 'edituserdetails' ?
+  //     <EditUserDetails onRouteChange={this.onRouteChange} />
+  //     : (route === 'editshopdetails' ?
+  //       <EditShopDetails onRouteChange={this.onRouteChange} />
+  //       : (route === 'shophome' ?
+  //         <ShopHome onRouteChange={this.onRouteChange} />
+  //         : (route === 'shoporders' ?
+  //           <ShopOrders onRouteChange={this.onRouteChange} />
 
   render() {
     const {route} = this.state;
@@ -98,19 +112,25 @@ class App extends Component {
     else if(route === 'registershopkeeper'){
       now=<RegisterShopkeeper onRouteChange={this.onRouteChange} loadShop={this.loadShop}/>
     }
-    else if(route==='home' ){
-      now=  <div>
-      <h1>{`I am ${this.state.user.username}`}</h1>
-      <h2>{`I live in ${this.state.user.city}`}</h2>
-    </div>
+    else if(route === 'userhome'){
+      now= <UserHome onRouteChange={this.onRouteChange} />
     }
-    else if(route==='shop-home'){
-     now= <div>
-      <h1>{`I am ${this.state.shop.shopid}`}</h1>
-      <h2>{`I live in ${this.state.shop.address}`}</h2>
-    </div>
-
+    else if(route==='userorders'){
+      now= <UserOrders onRouteChange={this.onRouteChange} />
     }
+    else if(route === 'edituserdetails'){
+now =  <EditUserDetails onRouteChange={this.onRouteChange} />
+    }
+    else if(route === 'editshopdetails'){
+   now=  <EditShopDetails onRouteChange={this.onRouteChange} />
+    }
+    else if(route==='shophome'){
+     now= <ShopHome onRouteChange={this.onRouteChange} />
+    }
+    else if(route === 'shoporders' ){
+  now=   <ShopOrders onRouteChange={this.onRouteChange} />
+    }
+   
     else {
     now= <div className='center pa7-ns'>
     <img src={Construction} alt='Logo' />  

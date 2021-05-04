@@ -35,7 +35,7 @@ import './SignInBuyer.css'
                 if(user.cust_id){
                     console.log("user main hu", user)
                     this.props.loadUser(user)
-                    this.props.onRouteChange('home')
+                    this.props.onRouteChange('userhome')
                 }
             })
             .catch(console.log)

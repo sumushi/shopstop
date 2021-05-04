@@ -22,6 +22,9 @@ class RegisterBuyer extends React.Component{
     //   console.log(this.state.regMail)
 
   }
+  handleRoute=(event)=>{
+      this.props.onRouteChange('signinbuyer')
+  }
  
     onSubmitRegister=()=>{
         fetch("https://api-shopstop.herokuapp.com/userreg",{
@@ -43,7 +46,7 @@ class RegisterBuyer extends React.Component{
                 console.log("user main hu", user)
                 if(user.cust_id){
                     this.props.loadUser(user)
-                    this.props.onRouteChange('home')
+                    this.props.onRouteChange('userhome')
                 }
             })
             .catch(console.log)
@@ -115,8 +118,9 @@ class RegisterBuyer extends React.Component{
                             name="pincode" type="text" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
                         </div>
                         <div className="mb3 tc f6">
-                            Do you have an account? <p 
-                            
+                            Do you have an account? 
+                            <p 
+                             onClick={this.handleRoute}
                             className="blue di pointer underline ph1">Sign In Now!</p>
                         </div>
                         <div className="tc">
