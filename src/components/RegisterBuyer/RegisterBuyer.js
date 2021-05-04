@@ -6,57 +6,36 @@ class RegisterBuyer extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            regUsername:'',
-            regMail:'',
-            regPassword:'',
-            regPhone:'',
-            regHouseno:'',
-            regArea:'',
-            regCity:'',
-            regPincode:''
+            username:'',
+            mail:'',
+            password:'',
+            phone:'',
+            houseno:'',
+            area:'',
+            city:'',
+            pincode:''
 
         }
   }
-  onMailChange=(event)=>{
-      this.setState({regMail:event.target.value})
+  handleChange=(event)=>{
+      this.setState({[event.target.name]:event.target.value})
     //   console.log(this.state.regMail)
 
   }
-  onPasswordChange=(event)=>{
-    this.setState({regPassword:event.target.value})
-  }
-  onUsernameChange=(event)=>{
-    this.setState({regUsername:event.target.value})
-   }
-   onPhoneChange=(event)=>{
-    this.setState({regPhone:event.target.value})
-   }
-   onHousenoChange=(event)=>{
-    this.setState({regHouseno:event.target.value})
-    // console.log(this.state.regHouseno)
-  }
-  onAreaChange=(event)=>{
-    this.setState({regArea:event.target.value})
- }
-    onCityChange=(event)=>{
-        this.setState({regCity:event.target.value})
-    }
-    onPincodeChange=(event)=>{
-        this.setState({regPincode:event.target.value})
-    }
+ 
     onSubmitRegister=()=>{
         fetch("https://api-shopstop.herokuapp.com/userreg",{
             method:'post',
             headers:{'Content-Type':"application/json"},
             body:JSON.stringify({
-              mail:this.state.regMail,
-              password:this.state.regPassword,
-              username:this.state.regUsername,
-              phone:this.state.regPhone,
-              houseno:this.state.regHouseno,
-              area:this.state.regArea,
-              city:this.state.regCity,
-              locality_pin_code:this.state.regPincode
+              mail:this.state.mail,
+              password:this.state.password,
+              username:this.state.username,
+              phone:this.state.phone,
+              houseno:this.state.houseno,
+              area:this.state.area,
+              city:this.state.city,
+              locality_pin_code:this.state.pincode
             })
         })
         .then(res=>res.json())
@@ -89,50 +68,50 @@ class RegisterBuyer extends React.Component{
                         <div className="mb3">
                             <label htmlFor="" className="db ttu b lh-copy">Username</label>
                             <input 
-                            onChange={this.onUsernameChange}
+                            onChange={this.handleChange}
                             name="username" 
                             type="text" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
                         </div>
                         <div className="mb3">
                             <label htmlFor="" className="db ttu b lh-copy">Mail</label>
                             <input
-                              onChange={this.onMailChange}
+                              onChange={this.handleChange}
                              name="mail" type="mail" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
                         </div>
                         <div className="mb4">
                             <label htmlFor="" className="db ttu b lh-copy">Password</label>
                             <input 
-                              onChange={this.onPasswordChange}
+                              onChange={this.handleChange}
                             name="password" type="password" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
                         </div>
                         <div className="mb4">
                             <label htmlFor="" className="db ttu b lh-copy">Phone no</label>
                             <input 
-                              onChange={this.onPhoneChange}
+                              onChange={this.handleChange}
                             name="phone" type="text" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
                         </div>
                         <div className="mb4">
                             <label htmlFor="" className="db ttu b lh-copy">House no</label>
                             <input 
-                              onChange={this.onHousenoChange}
+                              onChange={this.handleChange}
                             name="houseno" type="text" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
                         </div>
                         <div className="mb4">
                             <label htmlFor="" className="db ttu b lh-copy">Area</label>
                             <input 
-                              onChange={this.onAreaChange}
+                              onChange={this.handleChange}
                             name="area" type="text" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
                         </div>
                         <div className="mb4">
                             <label htmlFor="" className="db ttu b lh-copy">City</label>
                             <input
-                              onChange={this.onCityChange}
+                              onChange={this.handleChange}
                             name="city" type="text" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
                         </div>
                         <div className="mb4">
                             <label htmlFor="" className="db ttu b lh-copy">Pin code</label>
                             <input
-                              onChange={this.onPincodeChange}
+                              onChange={this.handleChange}
                             name="pincode" type="text" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
                         </div>
                         <div className="mb3 tc f6">

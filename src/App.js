@@ -9,8 +9,6 @@ import SignInShopkeeper from './components/SignInShopkeeper/SignInShopkeeper'
 import RegisterBuyer from './components/RegisterBuyer/RegisterBuyer'
 import RegisterShopkeeper from './components/RegisterShopkeeper/RegisterShopkeeper'
 
-
-
 const intialState={
   route:'usertype',
   isSignedin:'false',
@@ -25,6 +23,17 @@ const intialState={
             city:'',
             pincode:''
 
+  },
+  shop:{
+    shopid:'',
+    shop_email:'',
+    shop_password:'',
+    shop_name:'',
+    phone:'',
+    address:'',
+    category:'',
+    pincode:''
+
   }
 
 }
@@ -36,16 +45,6 @@ class App extends Component {
   }
 
 
-//   area: "frstpong"
-// city: "fist"
-// cust_id: 1684
-// houseno: 24
-// locality_pin_code: 453670
-// mail: "frst@gmail.com"
-// password: "$2b$10$g9OyN1iytIw.LHe0fwkcwu41orIAy4sn8W.Hr8pBWMBkCLtFwglzS"
-// phone: "90909087"
-// sector: null
-// username: "frstuer"
 
   loadUser=(user)=>{
     // console.log(user)
@@ -62,6 +61,20 @@ class App extends Component {
       pincode:user.locality_pin_code }})
  
   }
+  loadShop=(shop)=>{
+    // console.log(user)
+ 
+    this.setState({shop:{ 
+      shopid:shop.shopid,
+    shop_email:shop.shop_email,
+    shop_password:shop.shop_password,
+    shop_name:shop.shop_name,
+    phone:shop.phone,
+    address:shop.address,
+    category:shop.category,
+    pincode:shop.locality_pin_code}})
+ 
+  }
 
   onRouteChange = (route) => {
     
@@ -73,49 +86,40 @@ class App extends Component {
 
   render() {
     const {route} = this.state;
+    let now;
+    if(route === 'usertype'){ now= <UserType onRouteChange={this.onRouteChange}/>}
+    else if(route === 'signinbuyer'){now= <SignInBuyer onRouteChange={this.onRouteChange} loadUser={this.loadUser} />}
+    else if(route === 'signinshopkeeper'){
+      now= <SignInShopkeeper onRouteChange={this.onRouteChange} loadShop={this.loadShop}cd/>
+    }
+    else if(route === 'registerbuyer'){
+      now= <RegisterBuyer onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
+    }
+    else if(route === 'registershopkeeper'){
+      now=<RegisterShopkeeper onRouteChange={this.onRouteChange} loadShop={this.loadShop}/>
+    }
+    else if(route==='home' ){
+      now=  <div>
+      <h1>{`I am ${this.state.user.username}`}</h1>
+      <h2>{`I live in ${this.state.user.city}`}</h2>
+    </div>
+    }
+    else if(route==='shop-home'){
+     now= <div>
+      <h1>{`I am ${this.state.shop.shopid}`}</h1>
+      <h2>{`I live in ${this.state.shop.address}`}</h2>
+    </div>
+
+    }
+    else {
+    now= <div className='center pa7-ns'>
+    <img src={Construction} alt='Logo' />  
+    </div>
+    }
     return (
-     <div className='App'>
-       
+     <div className='App'>  
       <Navigation onRouteChange={this.onRouteChange} />
-      
-      {
-      
-      route === 'usertype' ?
-          <UserType onRouteChange={this.onRouteChange}/>
-        :  (route === 'signinbuyer' ?
-          <SignInBuyer onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
-              : (route === 'signinshopkeeper' ?
-              <SignInShopkeeper onRouteChange={this.onRouteChange}/>
-                  : (route === 'registerbuyer' ?
-                  <RegisterBuyer onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
-                                : (route === 'registershopkeeper' ?
-                                 <RegisterShopkeeper onRouteChange={this.onRouteChange}/>
-                                : (route==='home'  ?
-                               <div>
-                                 <h1>{`I am ${this.state.user.username}`}</h1>
-                                 <h2>{`I live in ${this.state.user.city}`}</h2>
-                               </div>
-                               : 
-                               <div className='center pa7-ns'>
-                                    <img src={Construction} alt='Logo' />  
-                                </div>
-                               )
-                                
-                              )
-                )
-            ) 
-        )
-      }
-      
-      {/*
-      
-      
-      <RegisterBuyer />
-      
-      <SignInShopkeeper />
-      <RegisterShopkeeper />*/}
-
-
+     {now} 
      </div>
     );
   }
