@@ -26,7 +26,7 @@ class SignInShopkeeper extends Component {
             if(shop.shopid){
                 console.log("shop main hu", shop)
                 this.props.loadShop(shop)
-                this.props.onRouteChange('shop-home')
+                this.props.onRouteChange('shophome')
             }
         })
         .catch(console.log)

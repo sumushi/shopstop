@@ -40,7 +40,7 @@ class RegisterBuyer  extends Component {
                 console.log("shop main hu", shop)
                 if(shop.shopid){
                     this.props.loadShop(shop)
-                    this.props.onRouteChange('shop-home')
+                    this.props.onRouteChange('shophome')
                 }
             })
             .catch(console.log)

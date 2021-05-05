@@ -14,6 +14,7 @@ import EditUserDetails from './components/EditUserDetails/EditUserDetails'
 import EditShopDetails from './components/EditShopDetails/EditShopDetails'
 import ShopHome from './components/ShopHome/ShopHome'
 import ShopOrders from './components/ShopOrders/ShopOrders'
+import ShopProducts from './components/UserHome/ShopProducts'
 const intialState={
   route:'usertype',
   isSignedin:'false',
@@ -80,23 +81,14 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
-    
     this.setState({route: route});
-    
   }
-
-  // : (route === 'userhome' ?
-  // <UserHome onRouteChange={this.onRouteChange} />
-  // : (route === 'userorders' ?
-  //   <UserOrders onRouteChange={this.onRouteChange} />
-  //   : (route === 'edituserdetails' ?
-  //     <EditUserDetails onRouteChange={this.onRouteChange} />
-  //     : (route === 'editshopdetails' ?
-  //       <EditShopDetails onRouteChange={this.onRouteChange} />
-  //       : (route === 'shophome' ?
-  //         <ShopHome onRouteChange={this.onRouteChange} />
-  //         : (route === 'shoporders' ?
-  //           <ShopOrders onRouteChange={this.onRouteChange} />
+  routeShopProducts=(shop)=>{
+    this.setState({route: "shopproducts",shop:shop});
+  }
+  clearState=()=>{
+    this.setState({shop:intialState.shop,user:intialState.user, route:'usertype'})
+  }
 
   render() {
     const {route} = this.state;
@@ -113,7 +105,11 @@ class App extends Component {
       now=<RegisterShopkeeper onRouteChange={this.onRouteChange} loadShop={this.loadShop}/>
     }
     else if(route === 'userhome'){
-      now= <UserHome onRouteChange={this.onRouteChange} />
+      now= <UserHome 
+      onRouteChange={this.onRouteChange} 
+      clearState={this.clearState}
+      routeShopProducts={this.routeShopProducts}
+      />
     }
     else if(route==='userorders'){
       now= <UserOrders onRouteChange={this.onRouteChange} />
@@ -125,11 +121,17 @@ now =  <EditUserDetails onRouteChange={this.onRouteChange} />
    now=  <EditShopDetails onRouteChange={this.onRouteChange} />
     }
     else if(route==='shophome'){
-     now= <ShopHome onRouteChange={this.onRouteChange} />
+     now= <ShopHome 
+     onRouteChange={this.onRouteChange}  
+     shop={this.state.shop}
+     clearState={this.clearState}/>
     }
     else if(route === 'shoporders' ){
   now=   <ShopOrders onRouteChange={this.onRouteChange} />
     }
+    else if(route === 'shopproducts' ){
+      now=   <ShopProducts shopid={this.state.shop.shopid} />
+        }
    
     else {
     now= <div className='center pa7-ns'>
