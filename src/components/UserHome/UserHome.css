@@ -1,0 +1,32 @@
+.userhome .background{
+    background-image: url(background.jpg);
+    height: 49rem;
+    padding-top: 1.5rem;
+    
+}
+
+.userhome .search-bar{
+    margin-right: 1rem;
+}
+
+.userhome hr{
+    width: 10%;
+}
+
+.userhome .recent-order{
+    font-family: sans-serif;
+}
+
+.userhome .more-order{
+    font-weight: 400;
+    color: grey;
+}
+
+.userhome button img{
+    width: 30px;
+}
+.userhome .profile-btn{
+    position: relative;
+    left: 45rem;
+    margin-bottom: 3rem;
+}
