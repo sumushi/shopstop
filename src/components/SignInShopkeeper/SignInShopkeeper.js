@@ -1,8 +1,40 @@
-import React from 'react';
+import React,{Component} from 'react';
 import './SignInShopkeeper.css'
-const SignInShopkeeper = ({onRouteChange}) => {
+class SignInShopkeeper extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            email:"",
+            password:""
+        }
+    }
+   handleChange=(event)=>{
+  this.setState({[event.target.name]:event.target.value})
+   } 
+   onSubmitSignin=()=>{
+    fetch("https://api-shopstop.herokuapp.com/shoplogin",{
+        method:'post',
+        headers:{'Content-Type':"application/json"},
+        body:JSON.stringify({
+          shop_email:this.state.email,
+          shop_password:this.state.password,
+        })
+    })
+    .then(res=>res.json())
+        .then(shop=>{
+         
+            if(shop.shopid){
+                console.log("shop main hu", shop)
+                this.props.loadShop(shop)
+                this.props.onRouteChange('shophome')
+            }
+        })
+        .catch(console.log)
 
+}
+   
 
+render(){
     return (
 
         <div >
@@ -16,26 +48,32 @@ const SignInShopkeeper = ({onRouteChange}) => {
                         </header>
                         <article id="register-buyer" action="" className="ph3 pt3 pb4 f7">
                             <div className="mb3">
-                                <label for="" className="db ttu b lh-copy">Username</label>
-                                <input name="username" type="text" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
+                                <label htmlFor="" className="db ttu b lh-copy">Email</label>
+                                <input 
+                                  onChange={this.handleChange}
+                                name="email" type="email" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
                             </div>
                             
                             <div className="mb4">
-                                <label for="" className="db ttu b lh-copy">Password</label>
-                                <input name="password" type="password" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
+                                <label htmlFor="" className="db ttu b lh-copy">Password</label>
+                                <input
+                                   onChange={this.handleChange}
+                                 name="password" type="password" className="input-reset w-100 mw-100 bn br1 pa2 bg-light-gray" />
                             </div>
                             <div className="tc f6">
                                 Are you new here? <p 
-                                onClick={() => onRouteChange('registershopkeeper')}
+                                onClick={() => this.props.onRouteChange('registershopkeeper')}
                                 className=" link pointer dib blue underline ph1">Register Now!</p>
                             </div>
                             <div className="mb3  tc f6">
                                 Are you a Buyer? <p
-                                onClick={() => onRouteChange('signinbuyer')} className="pointer underline dib blue ph1">Login Here!</p>
+                                onClick={() => this.props.onRouteChange('signinbuyer')} className="pointer underline dib blue ph1">Login Here!</p>
                             </div>
                             <div className="tc">
                                 <input type="submit"
-                                onClick={() => onRouteChange('underconstruction')}  value="Sign In" className="ttu bn pv3 ph4 f6 bg-blue white b br-pill pointer grow" />
+                                onClick={this.onSubmitSignin} 
+                                 value="Sign In" 
+                                 className="ttu bn pv3 ph4 f6 bg-blue white b br-pill pointer grow" />
                             </div>
                         </article>
                     </div>
@@ -45,6 +83,9 @@ const SignInShopkeeper = ({onRouteChange}) => {
 
         </div>
     );
+
+}
+    
 
 
 }

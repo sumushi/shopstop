@@ -1,0 +1,14 @@
+.userorders h1{
+    font-family: sans-serif;
+    padding-top: 3.5rem;
+}
+
+.userorders .card{
+    text-align: left;
+    margin: 5rem;
+}
+
+.userorders .home{
+    font-weight: 400;
+    color: grey;
+}
